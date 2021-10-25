@@ -55,19 +55,6 @@ ANALYSISDIR = '5_Statistik'
 LIMITSDIR = '2_Grenzen'
 LIMITSFILE = f'{LIMITSDIR}/limits.csv'
 
-if not os.path.isdir(BASEDIR):
-    if not os.path.exist(BASEDIR):
-        os.mkdir(BASEDIR)
-        print(f'{BASEDIR} erstellt')
-        print(f'Bitte lege die Exceldateien unter {BASEDIR} ab und starte das Programm erneut')
-        wait_and_exit()
-    else:
-        print(f'Fehler: {BASEDIR} ist kein Verzeichnis!')
-        print('  Irgendwas ist komisch, ich probiere es in 10 Sekunden trotzdem mal...')
-        print('Drücke Strg+C zum Abbrechen...')
-        sleep(10)
-
-
 def makedir(dir):
     try:
         os.mkdir(dir)
@@ -75,6 +62,7 @@ def makedir(dir):
         pass
 
 
+makedir(BASEDIR)
 makedir(CU_OUTPUT_DIR)
 makedir(PLOTDIR)
 makedir(ANALYSISDIR)
