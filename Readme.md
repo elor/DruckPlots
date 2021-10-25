@@ -31,4 +31,4 @@ Außerdem wird eine statistische Analyse durchgeführt.
 1. `conda env create -n druckplots -f requirements.txt`
 2. `conda activate druckplots`
 3. `pyinstaller.exe --exclude-module PyQt5 --distpath . -F DruckPlots.py`
-4. `DruckPlot.exe` zum Testen einmal starten
+4. `DruckPlots.exe` zum Testen einmal starten
