@@ -16,11 +16,11 @@ Das Programm liest Druck-Daten als Excel-Dateien einPlots ab
 4. Ändere die Grenzwerte unter `5_Grenzen/limits.csv`
    * Legt den Bereich für den blauen Hintergrund in den Plots fest
    * auf -1,-1 setzen, um keinen blauen Hintergrund anzuzeigen 
-5. Starte WichtePlotx.exe erneut, um blaue Hintergründe zu erzeugen
+5. Starte DruckPlots.exe erneut, um blaue Hintergründe zu erzeugen
 
 ## Installation / Kompilierung
 
 1. `conda env create -n druckplots -f requirements.txt`
 2. `conda activate druckplots`
-3. `pyinstaller.exe -F DruckPlots.py`
+3. `pyinstaller.exe --exclude-module PyQt5 --distpath . -F DruckPlots.py`
 4. `DruckPlot.exe` zum Testen einmal starten
