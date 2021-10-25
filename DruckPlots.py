@@ -175,7 +175,7 @@ if __name__ == "__main__":
             ax.axvline(n, color='grey', linewidth=0.2 if n % 5 else 0.5)
 
         if analysis:
-            ax.text(0.4, 0.95, '\n'.join([f'{k}: {v.round(1)}' for k, v in analysis.items()]),
+            ax.text(0.4, 0.95, '\n'.join([f'{k}: {round(v, 1)}' for k, v in analysis.items()]),
                     verticalalignment='top', transform=ax.transAxes, bbox={'facecolor': 'white', 'alpha': 0.5})
 
         ax.set_xlabel(f'Tiefe [$m$]')
@@ -199,5 +199,5 @@ if __name__ == "__main__":
                 for outfile in [analysis_file, all_analysis_file]:
                     outfile.write(f'sondierungsnummer: {sondierungsnummer}\n')
                     outfile.write(
-                        '\n'.join([f'{k}: {v.round(1)}' for k, v in analysis.items()]))
+                        '\n'.join([f'{k}: {round(v, 1)}' for k, v in analysis.items()]))
                     outfile.write('\n\n')
