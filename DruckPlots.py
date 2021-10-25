@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 def wait_and_exit(code=0, secs=600):
     print('Beende Programm mit Ctrl+C')
-    sleep(600)
+    sleep(secs)
     exit(code)
 
 
