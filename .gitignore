@@ -7,6 +7,12 @@
 *.png
 *.txt
 
+# python runtime files
+__pycache__
+
 # pyinstaller files
 *.spec
 /build/
+
+# editor files
+/.idea/

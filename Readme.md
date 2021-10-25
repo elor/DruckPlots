@@ -9,7 +9,7 @@ Außerdem wird eine statistische Analyse durchgeführt.
 
 ## Benutzung
 
-1. Lege die Excel-Dateien in `1_Rohdaten_Excel/` ab
+1. Lege deine Excel-Dateien in `1_Rohdaten_Excel/` ab
    * Unterstützt: `.xls` und `.xlsx`
 2. Passe die Werte für Wichte und Cu-Faktor in `Werte.json` an
 3. Starte DruckPlots.exe
@@ -23,7 +23,8 @@ Außerdem wird eine statistische Analyse durchgeführt.
 
 ## Installation
 
-Lade `DruckPlots.exe` herunter.
+1. Lade `DruckPlots.exe` und `Werte.json` herunter
+2. Führe DruckPlots.exe aus, um die Verzeichnisse und Dateien zu erzeugen
 
 ## Kompilierung von DruckPlots.exe
 
