@@ -27,19 +27,18 @@ def read_werte(wertefile='Werte.json'):
     except:
         werte = {}
 
-    must_exit = False
+    must_update = False
     if not 'WICHTE' in werte:
         werte['WICHTE'] = 15.0
-        print(f'Bitte ändere "WICHTE" in {wertefile} und starte das Programm erneut')
-        must_exit = True
+        print(f'Bitte ändere "WICHTE" in {wertefile}')
+        must_update = True
     if not 'CU_FAKTOR' in werte:
         werte['CU_FAKTOR'] = 20.0
-        print(f'Bitte ändere "CU_FAKTOR" in {wertefile} und starte das Programm erneut')
-        must_exit = True
+        print(f'Bitte ändere "CU_FAKTOR" in {wertefile}')
+        must_update = True
 
-    if must_exit:
+    if must_update:
         json.dump(werte, open(wertefile, 'w'))
-        wait_and_exit(1)
 
     return werte['WICHTE'], werte['CU_FAKTOR']
 
