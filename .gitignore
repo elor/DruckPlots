@@ -1,0 +1,12 @@
+# input files
+*.xls
+*.xlsx
+
+# output files
+*.csv
+*.png
+*.txt
+
+# pyinstaller files
+*.spec
+/build/
