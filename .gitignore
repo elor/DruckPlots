@@ -3,6 +3,7 @@
 *.xlsx
 
 # output files
+*.json
 *.csv
 *.png
 *.txt

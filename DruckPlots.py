@@ -48,12 +48,12 @@ WICHTE, CU_FAKTOR = read_werte()
 print(f'WICHTE: {WICHTE}')
 print(f'CU_FAKTOR: {CU_FAKTOR}')
 
+LIMITSFILE = 'Grenzen.csv'
+
 BASEDIR = '1_Rohdaten_EXCEL'
-CU_OUTPUT_DIR = '3_CU_CSV'
-PLOTDIR = '4_Plots'
-ANALYSISDIR = '5_Statistik'
-LIMITSDIR = '2_Grenzen'
-LIMITSFILE = f'{LIMITSDIR}/limits.csv'
+CU_OUTPUT_DIR = '2_Cu_CSV'
+PLOTDIR = '3_Plots'
+ANALYSISDIR = '4_Statistik'
 
 def makedir(dir):
     try:
@@ -66,7 +66,6 @@ makedir(BASEDIR)
 makedir(CU_OUTPUT_DIR)
 makedir(PLOTDIR)
 makedir(ANALYSISDIR)
-makedir(LIMITSDIR)
 
 
 def pathsafe(sondierungsnummer):

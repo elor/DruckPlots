@@ -14,9 +14,9 @@ Außerdem wird eine statistische Analyse durchgeführt.
 2. Passe die Werte für Wichte und Cu-Faktor in `Werte.json` an
 3. Starte DruckPlots.exe
     * Geduld: Der erste Programmstart dauert bis zu einige Minuten, bevor etwas angezeigt wird
-    * Bilder werden unter `4_Plots/` abgelegt
-    * Statistiken werden unter `5_Statistik/` abgelegt
-4. Setze die Statistik-Bereiche für jede Sondierung unter `2_Grenzen/limits.csv`
+    * Bilder werden unter `3_Plots/` abgelegt
+    * Statistiken werden unter `4_Statistik/` abgelegt
+4. Setze die Statistik-Bereiche für jede Sondierung unter `Grenzen.csv`
    * Ändere z.B. `B 19/19,,` zu `B 19/19,6,35` um für Sondierung B 19/19 einen Statistik-Bereich von [6,35] auszuwählen
    * auf -1,-1 setzen, um keinen blauen Hintergrund anzuzeigen 
    * Die Analyse erfolgt nur im blauen Bereich
@@ -31,5 +31,5 @@ Außerdem wird eine statistische Analyse durchgeführt.
 
 1. `conda env create -n druckplots -f requirements.txt`
 2. `conda activate druckplots`
-3. `pyinstaller.exe --exclude-module PyQt5 --distpath . -F DruckPlots.py`
+3. `pyinstaller.exe --exclude-module PyQt5 -F DruckPlots.py`
 4. `DruckPlots.exe` zum Testen einmal starten
