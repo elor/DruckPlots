@@ -9,10 +9,9 @@ import glob
 import json
 from time import sleep
 print('  2/3 Lade Pandas')
-import pandas
+import pandas as pd
+import pandas.plotting._matplotlib
 print('  3/3 Lade Matplotlib')
-import matplotlib
-matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
@@ -94,9 +93,9 @@ if __name__ == "__main__":
     all_analyses = {}
 
     try:
-        limits_df = pandas.read_csv(LIMITSFILE)
+        limits_df = pd.read_csv(LIMITSFILE)
     except:
-        limits_df = pandas.DataFrame(
+        limits_df = pd.DataFrame(
             columns=['sondierungsnummer', 'depth_min', 'depth_max'])
         limits_df.to_csv(LIMITSFILE, index=False)
     limits_df = limits_df[['sondierungsnummer', 'depth_min', 'depth_max']]
@@ -106,15 +105,15 @@ if __name__ == "__main__":
     for excel_filename in xlsfiles:
         print(f'reading {excel_filename}')
 
-        xl = pandas.ExcelFile(excel_filename)
+        xl = pd.ExcelFile(excel_filename)
 
         if not 'Kopfdaten' in xl.sheet_names or not 'Data' in xl.sheet_names:
             print(f'  FEHLER: Tabellenblätter "Kopfdaten" und "Data" nicht enthalten')
             print(f'  Enthaltene Tabellenblätter: {xl.sheet_names}')
             continue
 
-        info_df = pandas.read_excel(xl, sheet_name='Kopfdaten', header=None)
-        data_df = pandas.read_excel(xl, sheet_name='Data')
+        info_df = pd.read_excel(xl, sheet_name='Kopfdaten', header=None)
+        data_df = pd.read_excel(xl, sheet_name='Data')
 
         sondierungsnummer_df = info_df[info_df[0] == 'Sondierungs-Nummer']
         assert(len(sondierungsnummer_df) == 1)
