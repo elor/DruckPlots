@@ -36,17 +36,22 @@ def read_werte(wertefile='Werte.json'):
         werte['CU_FAKTOR'] = 20.0
         print(f'Bitte ändere "CU_FAKTOR" in {wertefile}')
         must_update = True
+    if not 'MAXTIEFE' in werte:
+        werte['MAXTIEFE'] = 40.0
+        print(f'Bitte ändere "MAXTIEFE" in {wertefile}')
+        must_update = True
 
     if must_update:
         json.dump(werte, open(wertefile, 'w'), indent=2)
 
-    return werte['WICHTE'], werte['CU_FAKTOR']
+    return werte['WICHTE'], werte['CU_FAKTOR'], werte['MAXTIEFE']
 
 
-WICHTE, CU_FAKTOR = read_werte()
+WICHTE, CU_FAKTOR, MAXTIEFE= read_werte()
 
 print(f'WICHTE: {WICHTE}')
 print(f'CU_FAKTOR: {CU_FAKTOR}')
+print(f'MAXTIEFE: {MAXTIEFE}')
 
 LIMITSFILE = 'Grenzen.csv'
 
@@ -169,7 +174,7 @@ if __name__ == "__main__":
         ax = subdata_df.plot('depth_m', 'C_u')
         figure = ax.get_figure()
 
-        ax.set_xlim([0, max(40, total_depth_max)])
+        ax.set_xlim([0, max(MAXTIEFE, total_depth_max)])
         for n in range(0, int(math.ceil(total_depth_max))):
             ax.axvline(n, color='grey', linewidth=0.2 if n % 5 else 0.5)
 
