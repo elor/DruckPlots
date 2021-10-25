@@ -11,6 +11,8 @@ from time import sleep
 print('  2/3 Lade Pandas')
 import pandas
 print('  3/3 Lade Matplotlib')
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
