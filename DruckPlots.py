@@ -38,7 +38,7 @@ def read_werte(wertefile='Werte.json'):
         must_update = True
 
     if must_update:
-        json.dump(werte, open(wertefile, 'w'))
+        json.dump(werte, open(wertefile, 'w'), indent=2)
 
     return werte['WICHTE'], werte['CU_FAKTOR']
 

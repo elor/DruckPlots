@@ -13,18 +13,19 @@ Außerdem wird eine statistische Analyse durchgeführt.
    * Unterstützt: `.xls` und `.xlsx`
 2. Passe die Werte für Wichte und Cu-Faktor in `Werte.json` an
 3. Starte DruckPlots.exe
-    * Geduld: Programmstart dauert bis zu einigen Minuten, bevor etwas angezeigt wird
+    * Geduld: Der erste Programmstart dauert bis zu einige Minuten, bevor etwas angezeigt wird
     * Bilder werden unter `4_Plots/` abgelegt
     * Statistiken werden unter `5_Statistik/` abgelegt
-4. Ändere die Grenzwerte unter `2_Grenzen/limits.csv`
-   * Legt den Bereich für den blauen Hintergrund in den Plots fest
+4. Setze die Statistik-Bereiche für jede Sondierung unter `2_Grenzen/limits.csv`
+   * Ändere z.B. `B 19/19,,` zu `B 19/19,6,35` um für Sondierung B 19/19 einen Statistik-Bereich von [6,35] auszuwählen
    * auf -1,-1 setzen, um keinen blauen Hintergrund anzuzeigen 
-5. Starte DruckPlots.exe erneut, um blaue Hintergründe zu erzeugen
+   * Die Analyse erfolgt nur im blauen Bereich
+6. Starte DruckPlots.exe erneut, um Bilder und Statistiken anhand der neuen Grenzen zu aktualisieren
 
 ## Installation
 
-1. Lade `DruckPlots.exe` und `Werte.json` herunter
-2. Führe DruckPlots.exe aus, um die Verzeichnisse und Dateien zu erzeugen
+1. Lade `DruckPlots.exe` herunter
+2. Führe DruckPlots.exe einmal aus, um alle Verzeichnisse und Dateien zu erzeugen
 
 ## Kompilierung von DruckPlots.exe
 

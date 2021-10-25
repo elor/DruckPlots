@@ -13,6 +13,7 @@ __pycache__
 # pyinstaller files
 *.spec
 /build/
+*.exe
 
 # editor files
 /.idea/
