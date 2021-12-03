@@ -22,6 +22,12 @@ Außerdem wird eine statistische Analyse durchgeführt.
    * Die Analyse erfolgt nur im blauen Bereich
 6. Starte DruckPlots.exe erneut, um Bilder und Statistiken anhand der neuen Grenzen zu aktualisieren
 
+## Konfiguration
+
+Ändere die Werte in `Werte.json`
+
+STATS kann dabei `qc_kN` oder `C_u` sein
+
 ## Installation
 
 1. Lade `DruckPlots.exe` herunter

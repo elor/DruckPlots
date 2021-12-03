@@ -40,14 +40,18 @@ def read_werte(wertefile='Werte.json'):
         werte['MAXTIEFE'] = 40.0
         print(f'Bitte ändere "MAXTIEFE" in {wertefile}')
         must_update = True
+    if not 'STATS' in werte:
+        werte['STATS'] = 'C_u'
+        print(f'Bitte ändere "STATS" in {wertefile}')
+        must_update = True
 
     if must_update:
         json.dump(werte, open(wertefile, 'w'), indent=2)
 
-    return werte['WICHTE'], werte['CU_FAKTOR'], werte['MAXTIEFE']
+    return werte['WICHTE'], werte['CU_FAKTOR'], werte['MAXTIEFE'], werte['STATS']
 
 
-WICHTE, CU_FAKTOR, MAXTIEFE= read_werte()
+WICHTE, CU_FAKTOR, MAXTIEFE, STATSNAME = read_werte()
 
 print(f'WICHTE: {WICHTE}')
 print(f'CU_FAKTOR: {CU_FAKTOR}')
@@ -60,9 +64,9 @@ CU_OUTPUT_DIR = '2_Cu_CSV'
 PLOTDIR = '3_Plots'
 ANALYSISDIR = '4_Statistik'
 
-def makedir(dir):
+def makedir(dirname):
     try:
-        os.mkdir(dir)
+        os.mkdir(dirname)
     except FileExistsError:
         pass
 
@@ -73,8 +77,8 @@ makedir(PLOTDIR)
 makedir(ANALYSISDIR)
 
 
-def pathsafe(sondierungsnummer):
-    return "".join([c for c in sondierungsnummer.replace('/', '_').replace('\\', '_') if c.isalpha() or c.isdigit() or c in ['_']]).strip()
+def pathsafe(_sondierungsnummer):
+    return "".join([c for c in _sondierungsnummer.replace('/', '_').replace('\\', '_') if c.isalpha() or c.isdigit() or c in ['_']]).strip()
 
 
 if __name__ == "__main__":
@@ -99,7 +103,7 @@ if __name__ == "__main__":
         xl = pd.ExcelFile(excel_filename)
 
         if not 'Kopfdaten' in xl.sheet_names or not 'Data' in xl.sheet_names:
-            print(f'  FEHLER: Tabellenblätter "Kopfdaten" und "Data" nicht enthalten')
+            print('  FEHLER: Tabellenblätter "Kopfdaten" und "Data" nicht enthalten')
             print(f'  Enthaltene Tabellenblätter: {xl.sheet_names}')
             continue
 
@@ -157,21 +161,21 @@ if __name__ == "__main__":
                 f'  WARNUNG: {sondierungsnummer} wird ignoriert. Werte wurden manuell auf {depth_min} == {depth_max} gesetzt')
             analysis = None
         else:
-            Cu_df = subdata_df[subdata_df.depth_m.between(depth_min, depth_max, inclusive='both')]
-            Cu = Cu_df.C_u
+            analysis_df = subdata_df[subdata_df.depth_m.between(depth_min, depth_max, inclusive='both')]
+            stats_values = analysis_df[STATSNAME]
             # analysis_df = subdata_df[]
             analysis = {
-                'min': Cu.min(),
-                'max': Cu.max(),
-                'mean': Cu.mean(),
-                'median': Cu.median(),
-                'stddev': Cu.std(),
+                'min': stats_values.min(),
+                'max': stats_values.max(),
+                'mean': stats_values.mean(),
+                'median': stats_values.median(),
+                'stddev': stats_values.std(),
             }
             all_analyses[sondierungsnummer] = analysis
             # TODO: analyse hier
             pass
 
-        ax = subdata_df.plot('depth_m', 'C_u')
+        ax = subdata_df.plot('depth_m', STATSNAME)
         figure = ax.get_figure()
 
         ax.set_xlim([0, max(MAXTIEFE, total_depth_max)])
@@ -182,8 +186,13 @@ if __name__ == "__main__":
             ax.text(0.4, 0.95, '\n'.join([f'{k}: {round(v, 1)}' for k, v in analysis.items()]),
                     verticalalignment='top', transform=ax.transAxes, bbox={'facecolor': 'white', 'alpha': 0.5})
 
-        ax.set_xlabel(f'Tiefe [$m$]')
-        ax.set_ylabel(f'$C_u$ [$kN/m^2$]')
+        ax.set_xlabel('Tiefe [$m$]')
+        if STATSNAME == 'C_u':
+            ax.set_ylabel('$C_u$ [$kN/m^2$]')
+        elif STATSNAME == 'qc_kN':
+            ax.set_ylabel('$qc$ [$kN$]')
+        else:
+            ax.set_ylabel(f'${STATSNAME}$')
         ax.set_title(f'{sondierungsnummer}: Undränierte Scherfestigkeit $C_u$')
         ax.legend([sondierungsnummer])
 
@@ -205,3 +214,4 @@ if __name__ == "__main__":
                     outfile.write(
                         '\n'.join([f'{k}: {round(v, 1)}' for k, v in analysis.items()]))
                     outfile.write('\n\n')
+
