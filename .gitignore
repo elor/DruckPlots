@@ -18,3 +18,5 @@ __pycache__
 
 # editor files
 /.idea/
+DruckPlots.bin
+conda-env/
