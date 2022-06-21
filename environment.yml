@@ -1,0 +1,11 @@
+channels:
+  - conda-forge
+dependencies:
+  - python>3.9
+  - numpy
+  - nuitka
+  - libpython-static
+  - pandas
+  - matplotlib
+  - openpyxl
+  - xlrd

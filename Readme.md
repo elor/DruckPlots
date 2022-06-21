@@ -39,3 +39,11 @@ STATS kann dabei `qc_kN` oder `C_u` sein
 2. `conda activate druckplots`
 3. `pyinstaller.exe --exclude-module PyQt5 -F DruckPlots.py`
 4. `DruckPlots.exe` zum Testen einmal starten
+
+## Alternative zur Kompilierung: nuitka
+
+1. `conda env create -f environment.yml -p ./conda-env`
+2. `conda activate ./conda-env`
+3. `nuitka DruckPlots.py` --> erstellt `DruckPlots.bin`
+4. Nutze `./DruckPlots.bin` anstelle `./DruckPlots.py`
+
