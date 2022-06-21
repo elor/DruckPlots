@@ -189,11 +189,13 @@ if __name__ == "__main__":
         ax.set_xlabel('Tiefe [$m$]')
         if STATSNAME == 'C_u':
             ax.set_ylabel('$C_u$ [$kN/m^2$]')
+            ax.set_title(f'{sondierungsnummer}: Undränierte Scherfestigkeit $C_u$')
         elif STATSNAME == 'qc_kN':
-            ax.set_ylabel('$qc$ [$kN$]')
+            ax.set_ylabel('$q_c$ [$kN$]')
+            ax.set_title(f'{sondierungsnummer}: Spitzendruck $q_c$')
         else:
             ax.set_ylabel(f'${STATSNAME}$')
-        ax.set_title(f'{sondierungsnummer}: Undränierte Scherfestigkeit $C_u$')
+            ax.set_title(f'{sondierungsnummer}: ${STATSNAME}$')
         ax.legend([sondierungsnummer])
 
         ax.axvspan(depth_min, depth_max, alpha=0.2)
