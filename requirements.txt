@@ -2,3 +2,4 @@ pandas
 matplotlib
 pyinstaller
 xlrd
+openpyxl
